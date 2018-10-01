@@ -1,5 +1,6 @@
 # OS X
 .DS_Store
+node_modules/
 
 # Jekyll build
 /_site/
