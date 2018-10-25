@@ -56,7 +56,17 @@
   }
 
   p, li, dl {
-    font-size: 1em;
+    font-size: 0.9em;
+  }
+
+  ul, ol {
+    li {
+      font-size: 0.9em;
+      letter-spacing: 0.1px;
+      & > li {
+        font-size: 1em;
+      }
+    }
   }
 
   /* paragraph indents */
