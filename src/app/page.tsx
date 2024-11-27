@@ -9,10 +9,7 @@ export default function Home() {
             <div className="w-full lg:w-2/5 p-2 md:p-8 lg:h-full lg:overflow-y-scroll">
                 <Hero />
             </div>
-            <div
-            id="tab-section"
-            className="relative w-full mt-3 max-w-4xl mx-auto lg:mt-0 lg:h-full lg:w-3/5 p-2 md:p-8 lg:overflow-y-scroll"
-            >
+            <div id="tab-section" className="relative w-full mt-3 max-w-4xl mx-auto lg:mt-0 lg:h-full lg:w-3/5 p-2 md:p-8 lg:overflow-y-scroll">
                 <Navbar />
             </div>
         </div>

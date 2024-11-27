@@ -46,9 +46,13 @@ export default function Home() {
   const { query, type, sort } = form.watch();
 
   const fetchGithubRepos = useCallback(async () => {
+    console.log("-----------------------------");
+
     setLoading(true);
     try {
       const repos = await getRepos();
+
+      console.log(repos);
       setGithubProjects(repos);
     } catch (error) {
       console.error("Failed to fetch GitHub repos:", error);
@@ -58,6 +62,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    console.log("--------11111111---------");
+
     fetchGithubRepos();
   }, [fetchGithubRepos]);
 
