@@ -7,15 +7,14 @@ import { skillsConfig } from "@/config/skills.config";
 
 export default function Hero() {
   return (
-    <section className="w-full flex flex-col lg:min-h-[calc(100vh-7rem)]">
+    <section className="w-full flex flex-col">
       <Link href="/">
         <span className="font-mono text-sm underline">{siteConfig.name}</span>
+        <ThemeToggler />
       </Link>
       <div className="flex justify-between items-center mt-6">
-        <h1 className="head-text-sm">{portfolioConfig.name}</h1>
-        <div className="flex items-center gap-2">
-          <ThemeToggler />
-        </div>
+        <h1 className="head-text-sm">{portfolioConfig.name}
+        </h1>
       </div>
       <h3 className="mt-2 text-lg">
         {portfolioConfig.tagline} <span className="sr-only">tagline</span>

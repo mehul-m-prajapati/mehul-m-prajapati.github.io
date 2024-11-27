@@ -13,6 +13,8 @@
 # testing
 /coverage
 
+.velite/
+
 # next.js
 /.next/
 /out/
