@@ -34,16 +34,16 @@ export async function generateMetadata({
   }
 
   const ogUrl = new URL(`${siteConfig.siteUrl}${project.image.src}`);
-  ogUrl.searchParams.set("heading", project.title);
+  ogUrl.searchParams.set("heading", project.name);
   ogUrl.searchParams.set("type", "Blog Post");
   ogUrl.searchParams.set("mode", "dark");
 
   return {
-    title: `${project.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+    title: `${project.name} | ${siteConfig.name} | ${siteConfig.creator.name}`,
     description: project.description,
-    keywords: [...project.tags, ...siteConfig.keywords, project.title],
+    keywords: [...project.topics, ...siteConfig.keywords, project.name],
     openGraph: {
-      title: `${project.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+      title: `${project.name} | ${siteConfig.name} | ${siteConfig.creator.name}`,
       description: project.description,
       type: "article",
       url: `${siteConfig.siteUrl}/projects/${project.slugAsParams}`,
@@ -52,13 +52,13 @@ export async function generateMetadata({
           url: ogUrl.toString(),
           width: 1200,
           height: 630,
-          alt: project.title,
+          alt: project.name,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | ${siteConfig.name}`,
+      title: `${project.name} | ${siteConfig.name}`,
       description: project.description,
       images: [ogUrl.toString()],
     },
@@ -93,7 +93,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <span className="sr-only">rdsx.dev</span>
             </Link>
             <p className="px-2 py-1 text-xs rounded bg-secondary">
-              {new Date(project.date).toDateString()}
+              {new Date(project.created_at).toDateString()}
             </p>
           </div>
           <Picture
@@ -101,10 +101,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             imageDark={project.imageDark}
             width={600}
             height={400}
-            alt={project.title}
+            alt={project.name}
             className="border rounded-xl mx-auto"
           />
-          <h1 className="head-text-sm py-1 mt-6 mb-4">{project.title}</h1>
+          <h1 className="head-text-sm py-1 mt-6 mb-4">{project.name}</h1>
           <div className="mb-8">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {project.links.map((link, i) => (
@@ -122,7 +122,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              {project.tags.map((tag) => (
+              {project.topics.map((tag) => (
                 <p
                   key={tag}
                   className="text-xs p-1 rounded bg-secondary cursor-pointer"

@@ -76,7 +76,7 @@
 
 @layer base {
   * {
-    border: var(--border); /* Use the custom property directly here */
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground font-sans;
@@ -120,28 +120,25 @@
 }
 
 /* Tailwind style */
-/* Replace font-heading with font-sans or font-serif */
 .head-text {
-    @apply text-4xl font-extrabold font-sans leading-[1.15] md:text-6xl sm:text-7xl;
+  @apply text-4xl font-extrabold font-heading leading-[1.15] md:text-6xl sm:text-7xl;
 }
 
 .head-text-md {
-    @apply text-3xl font-extrabold font-sans leading-[1.15] sm:text-5xl;
+  @apply text-3xl font-extrabold font-heading leading-[1.15] sm:text-5xl;
 }
 
 .head-text-sm {
-    @apply text-2xl font-extrabold font-sans leading-[1.15] sm:text-4xl;
+  @apply text-2xl font-extrabold font-heading leading-[1.15] sm:text-4xl;
 }
 
-/* Example using Tailwind's default blue color with opacity */
 .social-link {
-    @apply w-8 h-8 rounded border active:border-b active:scale-[0.97] hover:border-blue-500/30 transition-all duration-100 ease-in-out flex justify-center items-center;
+  @apply w-8 h-8 rounded border active:border-b active:scale-[0.97] hover:border-[0.2px] hover:border-b-4 hover:border-primary/30 transition-all duration-100 ease-in-out flex justify-center items-center;
 }
 
-/* If using a predefined Tailwind color like blue */
 .pebble {
-    @apply border border-transparent active:border-b active:scale-[0.97] hover:border-blue-500/30 transition-all transform-gpu duration-100 ease-in-out;
-  }
+  @apply border border-transparent active:border-b active:scale-[0.97] hover:border-b-4 hover:border-primary/30 transition-all transform-gpu duration-100 ease-in-out;
+}
 
 .nav-item {
   box-shadow: 0px -3px 2px var(--nav-item-shadow) inset;
