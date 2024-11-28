@@ -46,13 +46,9 @@ export default function Home() {
   const { query, type, sort } = form.watch();
 
   const fetchGithubRepos = useCallback(async () => {
-    console.log("-----------------------------");
-
     setLoading(true);
     try {
       const repos = await getRepos();
-
-      console.log(repos);
       setGithubProjects(repos);
     } catch (error) {
       console.error("Failed to fetch GitHub repos:", error);
@@ -62,16 +58,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log("--------11111111---------");
-
     fetchGithubRepos();
   }, [fetchGithubRepos]);
-
-  const sortedFeaturedProjects = useMemo(() => {
-    return [...projects].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
-  }, []);
 
   const sortedGithubProjects = useMemo(() => {
     return [...githubProjects].sort((a, b) => {
@@ -83,21 +71,6 @@ export default function Home() {
       );
     });
   }, [githubProjects, sort]);
-
-  const filteredProjects = useMemo(() => {
-    const lowercaseQuery = query.toLowerCase();
-    const projectList =
-      type === "Featured" ? sortedFeaturedProjects : sortedGithubProjects;
-
-    return projectList.filter((project) => {
-      const title = type === "Featured" ? project.title : project.name;
-      const description = project.description || "";
-      return (
-        title.toLowerCase().includes(lowercaseQuery) ||
-        description.toLowerCase().includes(lowercaseQuery)
-      );
-    });
-  }, [type, query, sortedFeaturedProjects, sortedGithubProjects]);
 
   const renderProjects = useCallback(() => {
     if (loading && type === "Github") {
@@ -115,20 +88,12 @@ export default function Home() {
       );
     }
 
-    if (type === "Featured") {
-      return filteredProjects.map((project, index) => (
-        <ProjectCard key={index} project={project} />
-      ));
+    if (sortedGithubProjects.length > 0) {
+        return sortedGithubProjects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+        ));
     }
-
-    return (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-3">
-        {filteredProjects.map((repo, index) => (
-          <GithubRepo key={index} repo={repo} />
-        ))}
-      </div>
-    );
-  }, [type, filteredProjects, loading]);
+  }, [type, sortedGithubProjects, loading]);
 
   return (
     <section className="w-full space-y-6 mt-5">

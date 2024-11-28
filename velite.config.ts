@@ -74,19 +74,15 @@ export const projects = defineCollection({
   schema: s
     .object({
       slug: s.path(),
-      title: s.string(),
+      name: s.string(),
       description: s.string(),
-      date: s.isodate(),
-      tags: s.array(s.string()),
+      created_at: s.isodate(),
+      topics: s.array(s.string()),
       body: s.mdx(),
       image: s.image(),
       imageDark: s.image().optional(),
-      links: s.array(
-        s.object({
-          name: s.string(),
-          url: s.string().url(),
-        })
-      ),
+      homepage: s.string().url(),
+      html_url: s.string().url(),
     })
     .transform(computedFields),
 });

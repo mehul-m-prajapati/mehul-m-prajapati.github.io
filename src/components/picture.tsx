@@ -16,14 +16,14 @@ export default function Picture({ image, imageDark, quality, width, height, alt,
   return (
     <>
       <Image
-        src={image.src}
+        src={image?.src}
         alt={alt}
         width={width || image.width}
         height={height || image.height}
         className={cn(imageDark && "block dark:hidden", className)}
         priority
-        blurDataURL={image.blurDataURL}
-        placeholder="blur"
+        //blurDataURL={image?.blurDataURL}
+       // placeholder="blur"
         quality={quality || 100}
       />
       {imageDark && <Image
