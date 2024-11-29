@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "velite && next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "velite && next build",
+    "start": "velite && next start",
+    "lint": "velite && next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "@types/node": "22.10.0",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "^15.0.3",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-katex": "^7.0.1",
     "rehype-pretty-code": "^0.14.0",

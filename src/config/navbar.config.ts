@@ -9,6 +9,7 @@ export const navbarConfig: NavItem[] = [
     title: "Experience",
     url: "/experience"
   },
+  /*
   {
     title: "TIL",
     url: "/til"
@@ -16,5 +17,5 @@ export const navbarConfig: NavItem[] = [
   {
     title: "Blogs",
     url: "/blogs",
-  },
+  },*/
 ];

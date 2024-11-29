@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import ProjectCard from "@/components/project/project-card";
 import { Star } from "lucide-react";
-import { projects } from "#site/content";
+//import { projects } from "#site/content";
 import { getRepos } from "@/components/project/action";
 
 const schema = z.object({
@@ -43,7 +43,7 @@ export default function Home() {
     },
   });
 
-  const { query, type, sort } = form.watch();
+  const { type, sort } = form.watch();
 
   const fetchGithubRepos = useCallback(async () => {
     setLoading(true);
