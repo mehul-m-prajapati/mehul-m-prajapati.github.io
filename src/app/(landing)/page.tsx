@@ -61,7 +61,7 @@ export default function Home() {
     fetchGithubRepos();
   }, [fetchGithubRepos]);
 
-  const sortedGithubProjects = useMemo(() => {
+  let sortedGithubProjects: any[] = useMemo(() => {
     return [...githubProjects].sort((a, b) => {
       if (sort === "Stars") {
         return b.stargazers_count - a.stargazers_count;
@@ -89,6 +89,8 @@ export default function Home() {
     }
 
     if (sortedGithubProjects.length > 0) {
+
+        sortedGithubProjects = sortedGithubProjects.slice(0, 5);
         return sortedGithubProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
         ));
