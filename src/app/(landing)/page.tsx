@@ -100,7 +100,7 @@ export default function Home() {
   return (
     <section className="w-full space-y-6 mt-5">
       <Form {...form}>
-        <form className="w-full flex items-center nav-container sticky top-14 z-20">
+        <form className="w-full flex items-center nav-container top-0 z-50 bg-background/95 backdrop-blur-md border-b">
           <FormField
             control={form.control}
             name="query"
