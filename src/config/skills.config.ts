@@ -1,30 +1,43 @@
 export const skillsConfig = [
     {
+        category: "Programming Languages",
+        technologies: [
+            "C",
+            "Java",
+            "Python",
+        ]
+    },
+    {
       category: "Frontend",
       technologies: [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Typescript",
         "React",
         "Next.js",
-        "TailwindCSS",
-        "SCSS",
-        "Jest",
+        //"SCSS",
+        //"Jest",
       ],
     },
     {
       category: "Backend",
       technologies: [
         "Node.js",
+        "Express",
         "Flask",
       ],
     },
     {
-      category: "Firmware",
-      technologies: ["C", "Python", "Micropython"],
+      category: "Databases",
+      technologies: ["MySQL", "Postgres", "MongoDB"],
     },
     {
-      category: "Hardware",
+      category: "Dev-Ops",
       technologies: [
-        "ESP32",
-        "Raspberry Pi",
+        "AWS",
+        "Docker",
+        "GitHub Actions (CI/CD)",
       ],
     },
   ];

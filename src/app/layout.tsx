@@ -82,7 +82,7 @@ export default function RootLayout({
       >
       {/*  <Analytics />
         <SpeedInsights /> */}
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>

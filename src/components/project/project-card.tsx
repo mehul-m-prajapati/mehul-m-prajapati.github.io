@@ -13,7 +13,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="flex p-3 justify-between gap-2 rounded-xl border overflow-hidden">
       <div className="space-y-2 w-full tablet:w-3/5">
-        <Link href={`/projects/${project.slugAsParams}`} className="space-y-2 group/link">
+        {/* <Link href={`/projects/${project.slugAsParams}`} className="space-y-2 group/link"> */}
+        <Link href={project?.homepage || '/'} className="space-y-2 group/link">
           <div className="inline-flex items-center gap-1">
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl font-semibold font-heading">{project.name}</h1>

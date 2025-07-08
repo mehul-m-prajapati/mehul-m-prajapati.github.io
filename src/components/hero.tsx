@@ -16,13 +16,13 @@ export default function Hero() {
         <h1 className="head-text-sm">{portfolioConfig.name}
         </h1>
       </div>
-      <h3 className="mt-2 text-lg">
+      <h3 className="mt-2 mb-4 text-lg">
         {portfolioConfig.tagline} <span className="sr-only">tagline</span>
       </h3>
+      {/*
       <p className="my-6 max-w-2xl text-foreground/80">
-        Hey 👋 Mehul here! I&apos;m a software engineer
-        .
-      </p>
+        Hey 👋 Mehul here! I&apos;m a software engineer.
+      </p> */}
       <Socials />
       <div className="hidden md:flex flex-col text-sm space-y-2 rounded max-w-2xl text-foreground/70 my-7">
         {skillsConfig.map((skill) => (

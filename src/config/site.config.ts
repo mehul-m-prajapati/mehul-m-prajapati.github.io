@@ -1,7 +1,7 @@
 import type { Site } from "@/types";
 
 export const siteConfig: Site = {
-  name: "mehul.dev",
+  name: "",
   title: "Mehul Prajapati | Full Stack Developer",
   description: "Hi, I'm Mehul Prajapati. I work on backend, frontend, cloud & embedded systems",
   keywords: [
