@@ -62,7 +62,15 @@ export default function Home() {
   }, [fetchGithubRepos]);
 
   let sortedGithubProjects: any[] = useMemo(() => {
-    return [...githubProjects].sort((a, b) => {
+
+    const enhancedProjects= githubProjects.map((repo: any) => ({
+        ...repo,
+        image: {
+            src: `images/projects/${repo.name}.png`
+        }, // Your custom image path logic
+    }));
+
+    return [...enhancedProjects].sort((a, b) => {
       if (sort === "Stars") {
         return b.stargazers_count - a.stargazers_count;
       }
