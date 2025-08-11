@@ -22,13 +22,15 @@ import { cn } from "@/lib/utils";
 import ProjectCard from "@/components/project/project-card";
 import { Star } from "lucide-react";
 //import { projects } from "#site/content";
-import { getRepos } from "@/components/project/action";
+import { getRepos, getOrgRepos } from "@/components/project/action";
 
 const schema = z.object({
   query: z.string().min(1, "Search is required"),
   type: z.enum(["Featured", "Github"]).default("Featured"),
   sort: z.enum(["Last updated", "Stars"]).default("Stars"),
 });
+
+const PORTFOLIO_PROJECTS = ['clothify', 'github_tracker', 'weather_watch'];
 
 export default function Home() {
   const [githubProjects, setGithubProjects] = useState<any>([]);
@@ -46,13 +48,19 @@ export default function Home() {
   const { type, sort } = form.watch();
 
   const fetchGithubRepos = useCallback(async () => {
+
     setLoading(true);
+
     try {
       const repos = await getRepos();
-      setGithubProjects(repos);
-    } catch (error) {
+      const orgRepos = await getOrgRepos();
+
+      setGithubProjects([...repos, ...orgRepos]);
+    }
+    catch (error) {
       console.error("Failed to fetch GitHub repos:", error);
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
   }, []);
@@ -98,8 +106,15 @@ export default function Home() {
 
     if (sortedGithubProjects.length > 0) {
 
-        sortedGithubProjects = sortedGithubProjects.slice(0, 5);
-        return sortedGithubProjects.map((project, index) => (
+        let portProjects = sortedGithubProjects.filter(project => {
+            return PORTFOLIO_PROJECTS.some(p => project.html_url.includes(p));
+        });
+
+        portProjects.sort((a, b) => {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
+
+        return portProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
         ));
     }
