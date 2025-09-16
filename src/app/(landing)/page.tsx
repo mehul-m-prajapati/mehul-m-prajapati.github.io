@@ -30,7 +30,13 @@ const schema = z.object({
   sort: z.enum(["Last updated", "Stars"]).default("Stars"),
 });
 
-const PORTFOLIO_PROJECTS = ['clothify', 'zestAI', 'github_tracker', 'weather_watch'];
+const PORTFOLIO_PROJECTS = [
+    'clothify',
+    'zestAI',
+    'github_tracker',
+    'weather_watch',
+    'markdown_viewer'
+];
 
 export default function Home() {
   const [githubProjects, setGithubProjects] = useState<any>([]);
