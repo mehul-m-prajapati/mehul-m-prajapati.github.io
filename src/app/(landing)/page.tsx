@@ -31,6 +31,7 @@ const schema = z.object({
 });
 
 const PORTFOLIO_PROJECTS = [
+    'postman_lite',
     'clothify',
     'zestAI',
     'github_tracker',
