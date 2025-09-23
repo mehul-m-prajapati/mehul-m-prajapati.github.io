@@ -25,7 +25,7 @@ export const skillsConfig = [
       technologies: [
         "Node.js",
         "Express",
-        "Flask",
+        ///"Flask",
       ],
     },
     {

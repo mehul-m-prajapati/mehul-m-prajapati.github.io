@@ -12,17 +12,21 @@ export default function Hero() {
         <span className="font-mono text-sm underline">{siteConfig.name}</span>
         <ThemeToggler />
       </Link>
+
       <div className="flex justify-between items-center mt-6">
         <h1 className="head-text-sm">{portfolioConfig.name}
         </h1>
       </div>
+
       <h3 className="mt-2 mb-4 text-lg">
         {portfolioConfig.tagline} <span className="sr-only">tagline</span>
       </h3>
-      {/*
-      <p className="my-6 max-w-2xl text-foreground/80">
-        Hey 👋 Mehul here! I&apos;m a software engineer.
-      </p> */}
+
+      <p className="my-4 text-foreground/80 text-sm">
+        I hold a Master’s degree in Computer Science from Concordia University, Montreal, Canada.
+        I’m passionate about building innovative software products and continuously exploring new technologies.
+      </p>
+
       <Socials />
       <div className="hidden md:flex flex-col text-sm space-y-2 rounded max-w-2xl text-foreground/70 my-7">
         {skillsConfig.map((skill) => (
