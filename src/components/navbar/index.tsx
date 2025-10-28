@@ -34,9 +34,12 @@ const NavItem = ({ children, url, className }: NavItemProps) => {
     <Link href={url}>
       <div
         className={cn(
-          "p-2 min-w-16 lg:min-w-24 text-center hover:bg-secondary cursor-pointer border-t-[0.5px] bg-background transition-all duration-100 ease-out",
-          active ? "current hover:bg-background" : "nav-item",
-          className
+        "p-2 min-w-16 lg:min-w-24 text-center cursor-pointer border-t border-border transition-all duration-150 ease-out",
+        "bg-background hover:bg-secondary/50 dark:hover:bg-secondary/30",
+        active
+            ? "bg-muted/70 text-foreground font-medium dark:bg-muted/90 dark:text-foreground"
+            : "text-foreground/80",
+        className
         )}
       >
         {children}

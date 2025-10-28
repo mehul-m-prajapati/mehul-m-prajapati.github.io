@@ -8,13 +8,17 @@ export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();
 
   const switchTheme = () => {
+
     switch (theme) {
+
       case "light":
         setTheme("dark");
         break;
+
       case "dark":
         setTheme("light");
         break;
+        
       default:
         break;
     }

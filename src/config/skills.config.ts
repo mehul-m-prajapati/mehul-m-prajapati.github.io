@@ -37,6 +37,7 @@ export const skillsConfig = [
       technologies: [
         "AWS",
         "Docker",
+        "Kubernetes",
         "GitHub Actions (CI/CD)",
       ],
     },
