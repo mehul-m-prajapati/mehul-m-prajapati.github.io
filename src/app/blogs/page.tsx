@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 
@@ -6,6 +6,8 @@ interface MediumPost {
   title: string;
   link: string;
   pubDate: string;
+  thumbnail: string;
+  description: string;
 }
 
 function Page() {
@@ -20,18 +22,35 @@ function Page() {
         );
         const data = await response.json();
 
-        const posts: MediumPost[] = data.items.map((item: any) => ({
-          title: item.title,
-          link: item.link,
-          pubDate: item.pubDate,
-        }));
+        const posts: MediumPost[] = data.items.map((item: any) => {
+
+          const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+          let thumbnail = imgMatch ? imgMatch[1] : null;
+
+          const cleanDescription = item.description
+            .replace(/<[^>]+>/g, "")
+            .slice(0, 120) + "...";
+
+          if (!thumbnail) {
+            const keyword = encodeURIComponent(
+              item.title.split(" ").slice(0, 3).join(" ")
+            );
+            thumbnail = `https://source.unsplash.com/600x400/?${keyword},technology,web`;
+          }
+
+          return {
+            title: item.title,
+            link: item.link,
+            pubDate: item.pubDate,
+            thumbnail,
+            description: cleanDescription,
+          };
+        });
 
         setBlogs(posts);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error fetching Medium posts:", error);
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     };
@@ -58,26 +77,49 @@ function Page() {
         ) : blogs.length === 0 ? (
           <p className="text-center">No posts found.</p>
         ) : (
-          <ul className="list-disc list-inside space-y-3 text-sm">
+          <ul className="space-y-6">
             {blogs.map((post, index) => (
-              <li key={index} className="leading-relaxed">
-                <span className="">
-                  {new Date(post.pubDate).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                  })}
-                </span>{" "}
-                :{" "}
-                <a
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 hover:text-blue-800
-                   dark:text-blue-400 dark:hover:text-blue-600 no-underline"
-                >
-                  {post.title}
-                </a>
+              <li
+                key={index}
+                className="flex flex-col sm:flex-row items-start sm:items-center bg-card rounded-lg shadow-sm hover:shadow-md transition p-3"
+              >
+                {/* --- Left Side: Thumbnail --- */}
+                <div className="w-full sm:w-1/3 flex-shrink-0">
+                  <img
+                    src={post.thumbnail}
+                    alt={post.title}
+                    className="rounded-md w-full h-32 object-cover"
+                    onError={(e) => {
+                      // fallback to avatar-style image if broken
+                      (e.currentTarget.src = `https://ui-avatars.com/api/?background=random&name=${encodeURIComponent(
+                        post.title
+                      )}`);
+                    }}
+                  />
+                </div>
+
+                {/* --- Right Side: Content --- */}
+                <div className="w-full sm:w-2/3 sm:pl-4 mt-3 sm:mt-0">
+                  <p className="text-xs text-muted-foreground mb-1">
+                    {new Date(post.pubDate).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-semibold text-blue-700 hover:text-blue-800
+                     dark:text-blue-400 dark:hover:text-blue-600 no-underline"
+                  >
+                    {post.title}
+                  </a>
+                  <p className="text-sm text-foreground/80 mt-1 leading-snug">
+                    {post.description}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
